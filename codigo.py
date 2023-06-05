@@ -10,8 +10,6 @@ c = conn.cursor()
 
 
 # Declarando variáveis:
-usuario = ""
-senha = ""
 opcao = ""
 nome = ""
 contador = ""
@@ -21,13 +19,6 @@ posicao_consulta = 0
 confirmacao_consulta =  [["", "", ""] for _ in range(5)]
 
 # Determinando as funções: 
-
-def digitarCredenciais():
-
-    global usuario, senha
-
-    usuario = input("Digite seu usuário: ")
-    senha = input("Digite sua senha: ")
 
 def mostrarMenu():
     print("\n1- Marcar consulta")
@@ -115,17 +106,11 @@ def confirmarConsulta():
 
 opcao = 0 
 
-digitarCredenciais()
-
-while usuario != "sammara" or senha != "sammara":
-    print("Usuário e/ou senha incorreto(s)!\n")
-    digitarCredenciais()
-
 print("\n-------------------------------\n")
 print("\nBEM-VINDO(A) AO SISTEMA")
 print("\n-------------------------------\n")
 
-while(opcao != 4):
+while(opcao != 6):
     opcao = mostrarMenu()
 
     if opcao == 1:
@@ -133,16 +118,15 @@ while(opcao != 4):
         senha = input("Digite a nova senha: ")
         cadastrar_usuario(conn, nome, senha)
     elif opcao == 2:
-        marcarConsulta()
-    elif opcao == 3:
-        buscarConsultas()
-    elif opcao == 4:
-        confirmarConsulta()
-    elif opcao == 5:
         usuarios = listar_usuarios(conn)
         print(usuarios)
-
+    elif opcao == 3:
+        marcarConsulta()
+    elif opcao == 4:
+        buscarConsultas()
+    elif opcao == 5:
+        confirmarConsulta()
     elif opcao == 6:
         break
     else: 
-        print("Opção inválida. Digite uma opção de 1 a 4.")
+        print("Opção inválida. Digite uma opção de 1 a 6.")
