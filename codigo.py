@@ -2,6 +2,11 @@
 # Trabalho de Python, valendo a nota da 2ºAF;
 # Membros da equipe: Sammara Ingrid e Rafaela Urtiga;
 # ------------------------------------------------------
+import sqlite3
+from functions.usuario_db import cadastrar_usuario
+
+conn = sqlite3.connect('clinica') 
+c = conn.cursor()
 
 
 # Declarando variáveis:
@@ -26,6 +31,7 @@ def digitarCredenciais():
 
 def mostrarMenu():
     print("\n1- Marcar consulta")
+    print("1- Marcar consulta")
     print("2- Listar consulta de um dia")
     print("3- confirmar consulta")
     print("4- Sair")
@@ -122,7 +128,11 @@ print("\n-------------------------------\n")
 while(opcao != 4):
     opcao = mostrarMenu()
 
-    if opcao == 1:
+    if opcao == 0:
+        nome = input("Digite o novo usuário: ")
+        senha = input("Digite a nova senha: ")
+        cadastrar_usuario(conn, nome, senha)
+    elif opcao == 1:
         marcarConsulta()
     elif opcao == 2:
         buscarConsultas()
