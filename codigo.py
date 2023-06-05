@@ -3,7 +3,7 @@
 # Membros da equipe: Sammara Ingrid e Rafaela Urtiga;
 # ------------------------------------------------------
 import sqlite3
-from functions.usuario_db import cadastrar_usuario
+from functions.usuario_db import cadastrar_usuario, listar_usuarios
 
 conn = sqlite3.connect('clinica') 
 c = conn.cursor()
@@ -128,17 +128,21 @@ print("\n-------------------------------\n")
 while(opcao != 4):
     opcao = mostrarMenu()
 
-    if opcao == 0:
+    if opcao == 1:
         nome = input("Digite o novo usuário: ")
         senha = input("Digite a nova senha: ")
         cadastrar_usuario(conn, nome, senha)
-    elif opcao == 1:
-        marcarConsulta()
     elif opcao == 2:
-        buscarConsultas()
+        marcarConsulta()
     elif opcao == 3:
-        confirmarConsulta()
+        buscarConsultas()
     elif opcao == 4:
+        confirmarConsulta()
+    elif opcao == 5:
+        usuarios = listar_usuarios(conn)
+        print(usuarios)
+
+    elif opcao == 6:
         break
     else: 
         print("Opção inválida. Digite uma opção de 1 a 4.")

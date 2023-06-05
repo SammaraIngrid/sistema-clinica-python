@@ -6,3 +6,9 @@ def cadastrar_usuario(conexao, nome, senha):
     conexao.commit()
     
     return True
+
+def listar_usuarios(conexao):
+    cursor = conexao.cursor()
+    sql = 'select * from usuarios'
+    cursor.execute(sql)
+    return cursor.fetchall()
