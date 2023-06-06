@@ -37,3 +37,10 @@ def deletar_consultas(conexao, id):
     cursor.execute(sql, [id])
     conexao.commit()
     print("Consulta deletada!")
+
+def buscar_consultas(conexao, nome):
+        sql = 'select * from consultas where nome LIKE ?'
+        cursor = conexao.cursor()
+        cursor.execute(sql, [f'%{nome}%'])
+        consultas = cursor.fetchall()
+        print(consultas)

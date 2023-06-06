@@ -1,10 +1,10 @@
 # ------------------------------------------------------
-# Trabalho de Python, valendo a nota da 2ºAF;
+# Trabalho de Python, juntamente com SQL, valendo a nota da 3ºAF;
 # Membros da equipe: Sammara Ingrid e Rafaela Urtiga;
 # ------------------------------------------------------
 import sqlite3
 from functions.usuario_db import cadastrar_usuario, listar_usuarios
-from functions.consultas_db import marcar_consultas, listar_consultas, confirmar_consultas, deletar_consultas
+from functions.consultas_db import marcar_consultas, listar_consultas, confirmar_consultas, deletar_consultas, buscar_consultas
 
 conn = sqlite3.connect('clinica') 
 c = conn.cursor()
@@ -89,7 +89,7 @@ print("\n-------------------------------\n")
 print("\nBEM-VINDO(A) AO SISTEMA")
 print("\n-------------------------------\n")
 
-while(opcao != 6):
+while(opcao != 8):
     opcao = mostrarMenu()
 
     if opcao == 1:
@@ -112,6 +112,9 @@ while(opcao != 6):
          id = int(input("Qual o id da consulta que deseja deletar? "))
          deletar_consultas(conn, id)
     elif opcao == 7:
+        nome = input("Digite nome para buscar: ")
+        buscar_consultas(conn, nome)
+    elif opcao == 8:
         break
     else: 
-        print("Opção inválida. Digite uma opção de 1 a 6.")
+        print("Opção inválida. Digite uma opção de 1  a 8.")
