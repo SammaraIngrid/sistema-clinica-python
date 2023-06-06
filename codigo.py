@@ -4,7 +4,7 @@
 # ------------------------------------------------------
 import sqlite3
 from functions.usuario_db import cadastrar_usuario, listar_usuarios
-from functions.consultas_db import marcar_consultas, listar_consultas
+from functions.consultas_db import marcar_consultas, listar_consultas, confirmar_consultas
 
 conn = sqlite3.connect('clinica') 
 c = conn.cursor()
@@ -79,31 +79,9 @@ def buscarConsultas():
     print("\n-------------------------------\n")
 
 def confirmarConsulta():
-
-    global consultas
-
-    print("\n-------------------------------\n")
-
-    nome = input("Digite seu nome para a pesquisa: ") 
-
-    print("\n-------------------------------\n")
-
-    encontrou_consulta = False
-
-    for contador in range(posicao_consulta):
-        if consultas[contador][0] ==  nome:
-            encontrou_consulta = True
-            print(f"Nome do paciente: {consultas[contador][0]}\n")
-            print(f"Data da consulta: {consultas[contador][1]}\n")
-            print("Você deseja confirmar sua consulta? (1- SIM, 2- NÃO)")
-            consultas[contador][2] = int(input())        
-            print("\nCONSULTA CONFIRMADA COM SUCESSO!")
-
-    if not encontrou_consulta:
-        print("NÃO FOI ENCONTRADA CONSULTA COM O NOME MENCIONADO!")
-
-    print("\n-------------------------------\n")
-# Executando o código:
+    nome = input("Digite o nome do paciente: ")
+    data = input("Digite a data da consulta: ")
+    confirmar_consultas(conn, nome, data)
 
 opcao = 0 
 
@@ -129,7 +107,7 @@ while(opcao != 6):
         consultas = listar_consultas(conn)
         print(consultas)
     elif opcao == 5:
-        confirmarConsulta()
+         confirmarConsulta()
     elif opcao == 6:
         break
     else: 
