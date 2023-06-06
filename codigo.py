@@ -4,6 +4,7 @@
 # ------------------------------------------------------
 import sqlite3
 from functions.usuario_db import cadastrar_usuario, listar_usuarios
+from functions.consultas_db import marcar_consultas, listar_consultas
 
 conn = sqlite3.connect('clinica') 
 c = conn.cursor()
@@ -121,9 +122,12 @@ while(opcao != 6):
         usuarios = listar_usuarios(conn)
         print(usuarios)
     elif opcao == 3:
-        marcarConsulta()
+        nome = input("Digite seu nome: ")
+        data = input("Digite a data da consulta (DD/MM/AAAA): ")
+        marcar_consultas(conn, nome,data)
     elif opcao == 4:
-        buscarConsultas()
+        consultas = listar_consultas(conn)
+        print(consultas)
     elif opcao == 5:
         confirmarConsulta()
     elif opcao == 6:
