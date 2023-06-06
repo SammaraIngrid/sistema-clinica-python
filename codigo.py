@@ -4,7 +4,7 @@
 # ------------------------------------------------------
 import sqlite3
 from functions.usuario_db import cadastrar_usuario, listar_usuarios
-from functions.consultas_db import marcar_consultas, listar_consultas, confirmar_consultas
+from functions.consultas_db import marcar_consultas, listar_consultas, confirmar_consultas, deletar_consultas
 
 conn = sqlite3.connect('clinica') 
 c = conn.cursor()
@@ -109,6 +109,9 @@ while(opcao != 6):
     elif opcao == 5:
          confirmarConsulta()
     elif opcao == 6:
+         id = int(input("Qual o id da consulta que deseja deletar? "))
+         deletar_consultas(conn, id)
+    elif opcao == 7:
         break
     else: 
         print("Opção inválida. Digite uma opção de 1 a 6.")

@@ -4,13 +4,6 @@ conn = sqlite3.connect('clinica')
 c = conn.cursor()
 
 c.execute('''
-          DROP TABLE usuarios
-          ''')
-c.execute('''
-          DROP TABLE consultas
-          ''')
-
-c.execute('''
           CREATE TABLE IF NOT EXISTS usuarios(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nome VARCHAR(150),

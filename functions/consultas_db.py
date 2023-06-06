@@ -24,3 +24,16 @@ def confirmar_consultas(conexao, nome, data):
     sql = 'UPDATE consultas SET confirmada = true WHERE nome = ? and data = ?'
     cursor.execute(sql, [nome, data])
     print('\nConsulta confirmada com sucesso!')
+
+def deletar_consultas(conexao, id):
+    cursor = conexao.cursor()
+    sql = 'SELECT * FROM consultas WHERE id = ?'
+    cursor.execute(sql, [id])
+
+    if cursor.fetchall() == []:
+        return print('\nConsulta não encontrada.')
+
+    sql = 'DELETE FROM consultas WHERE id = ?'
+    cursor.execute(sql, [id])
+    conexao.commit()
+    print("Consulta deletada!")
