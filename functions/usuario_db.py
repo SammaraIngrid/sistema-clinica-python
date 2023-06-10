@@ -12,3 +12,9 @@ def listar_usuarios(conexao):
     sql = 'select * from usuarios'
     cursor.execute(sql)
     return cursor.fetchall()
+
+def login_usuarios(conexao, nome, senha):
+    cursor = conexao.cursor()
+    sql = 'SELECT * FROM usuarios WHERE nome = ? and senha = ?'
+    cursor.execute(sql, [nome, senha])
+    return cursor.fetchall()

@@ -22,14 +22,20 @@ def mostrarLogin():
     print("\n1- Cadastrar usuário")
     print("2- Login")
     print("3- Sair")
-    opcao = input("\nDigite a opção desejada: ")
+    opcao1 = input("\nDigite a opção desejada: ")
     
     return int(opcao1)
 
 def loginUsuario():
     nome = input("Digite seu usuário: ")
     senha = input("Digite sua senha: ")
-    login_usuarios(conn, nome, senha)
+    cursor = login_usuarios(conn, nome, senha)
+    if cursor:
+        print("\nLogin bem-sucedido!")
+        return True
+    else:
+        print('\nUsuário e/ou senha incorreto(s)')
+        return False
 
 def cadastrarUsuario():
     nome = input("Digite o novo usuário: ")
@@ -43,7 +49,7 @@ def listarUsuarios():
 def marcarConsulta():
     nome = input("Digite seu nome: ")
     data = input("Digite a data da consulta (DD/MM/AAAA): ")
-    marcar_consultas(conn, nome,data)
+    marcar_consultas(conn, nome, data)
 
 def listarConsultas():
     consultas = listar_consultas(conn)
@@ -54,8 +60,8 @@ def deletarConsultas():
     deletar_consultas(conn, id)
 
 def buscarConsultas():
-        nome = input("Digite nome para buscar: ")
-        buscar_consultas(conn, nome)
+    nome = input("Digite nome para buscar: ")
+    buscar_consultas(conn, nome)
 
 def confirmarConsulta():
     nome = input("Digite o nome do paciente: ")
@@ -69,14 +75,14 @@ print("\nBEM-VINDO(A) AO SISTEMA DA CLÍNICA")
 print("\n-------------------------------\n")
 print("\nEscolha uma das opções abaixo: \n")
 
-
-while(opcao1 != 2):
+while True:
     opcao1 = mostrarLogin()
 
     if opcao1 == 1:
         cadastrarUsuario()
     elif opcao1 == 2:
-        loginUsuario()
+        if loginUsuario():
+            break
     elif opcao1 == 3:
         break
     else: 
@@ -84,7 +90,7 @@ while(opcao1 != 2):
 
 opcao = 0 
 
-while(opcao != 7):
+while opcao != 7:
     opcao = mostrarMenu()
 
     if opcao == 1:
@@ -94,7 +100,7 @@ while(opcao != 7):
     elif opcao == 3:
         listarConsultas()
     elif opcao == 4:
-         confirmarConsulta()
+        confirmarConsulta()
     elif opcao == 5:
         buscarConsultas()
     elif opcao == 6:
