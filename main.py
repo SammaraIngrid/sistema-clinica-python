@@ -1,15 +1,9 @@
-# ------------------------------------------------------
-# Trabalho de Python, juntamente com SQL, valendo a nota da 3ºAF;
-# Membros da equipe: Sammara Ingrid e Rafaela Urtiga;
-# ------------------------------------------------------
 import sqlite3
-from functions.usuario_db import cadastrar_usuario, listar_usuarios
+from functions.usuario_db import cadastrar_usuario, listar_usuarios, login_usuarios
 from functions.consultas_db import marcar_consultas, listar_consultas, confirmar_consultas, deletar_consultas, buscar_consultas
 
 conn = sqlite3.connect('clinica') 
 c = conn.cursor()
-
-# Determinando as funções: 
 
 def mostrarMenu():
     print("\n1- Cadastrar usuário")
@@ -23,7 +17,19 @@ def mostrarMenu():
     opcao = input("\nDigite a opção desejada: ")
     
     return int(opcao)
+
+def mostrarLogin():
+    print("\n1- Cadastrar usuário")
+    print("2- Login")
+    print("3- Sair")
+    opcao = input("\nDigite a opção desejada: ")
     
+    return int(opcao1)
+
+def loginUsuario():
+    nome = input("Digite seu usuário: ")
+    senha = input("Digite sua senha: ")
+    login_usuarios(conn, nome, senha)
 
 def cadastrarUsuario():
     nome = input("Digite o novo usuário: ")
@@ -56,31 +62,44 @@ def confirmarConsulta():
     data = input("Digite a data da consulta: ")
     confirmar_consultas(conn, nome, data)
 
-opcao = 0 
+opcao1 = 0
 
-print("\n-------------------------------\n")
 print("\n-------------------------------\n")
 print("\nBEM-VINDO(A) AO SISTEMA DA CLÍNICA")
+print("\n-------------------------------\n")
 print("\nEscolha uma das opções abaixo: \n")
 
-while(opcao != 8):
+
+while(opcao1 != 2):
+    opcao1 = mostrarLogin()
+
+    if opcao1 == 1:
+        cadastrarUsuario()
+    elif opcao1 == 2:
+        loginUsuario()
+    elif opcao1 == 3:
+        break
+    else: 
+        print("Opção inválida. Digite uma opção de 1 a 3.")
+
+opcao = 0 
+
+while(opcao != 7):
     opcao = mostrarMenu()
 
     if opcao == 1:
-        cadastrarUsuario()
-    elif opcao == 2:
         listarUsuarios()
-    elif opcao == 3:
+    elif opcao == 2:
         marcarConsulta()
-    elif opcao == 4:
+    elif opcao == 3:
         listarConsultas()
-    elif opcao == 5:
+    elif opcao == 4:
          confirmarConsulta()
-    elif opcao == 6:
+    elif opcao == 5:
         buscarConsultas()
-    elif opcao == 7:
+    elif opcao == 6:
         deletarConsultas()
-    elif opcao == 8:
+    elif opcao == 7:
         break
-    else: 
-        print("Opção inválida. Digite uma opção de 1  a 8.")
+    else:
+        print("Opção inválida. Digite uma opção de 1 a 7.")
