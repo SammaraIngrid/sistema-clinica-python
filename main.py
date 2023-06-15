@@ -6,20 +6,19 @@ conn = sqlite3.connect('clinica')
 c = conn.cursor()
 
 def mostrarMenu():
-    print("\n1- Cadastrar usuário")
-    print("2- Listar usuários")
-    print("3- Marcar consulta")
-    print("4- Listar consultas")
-    print("5- Confirmar consulta")
-    print("6- Buscar consultas")
-    print("7- Deletar consultas")
-    print("8- Sair")
+    print("1- Listar usuários")
+    print("2- Marcar consulta")
+    print("3- Listar consultas")
+    print("4- Confirmar consulta")
+    print("5- Buscar consultas")
+    print("6- Deletar consultas")
+    print("7- Sair")
     opcao = input("\nDigite a opção desejada: ")
     
     return int(opcao)
 
 def mostrarLogin():
-    print("\n1- Cadastrar usuário")
+    print("\n1- Cadastrar usuário"
     print("2- Login")
     print("3- Sair")
     opcao1 = input("\nDigite a opção desejada: ")
