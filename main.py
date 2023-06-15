@@ -18,7 +18,7 @@ def mostrarMenu():
     return int(opcao)
 
 def mostrarLogin():
-    print("\n1- Cadastrar usuário"
+    print("\n1- Cadastrar usuário")
     print("2- Login")
     print("3- Sair")
     opcao1 = input("\nDigite a opção desejada: ")
